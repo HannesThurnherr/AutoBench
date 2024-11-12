@@ -1,3 +1,4 @@
+import os
 import google.generativeai as genai
 from abstract_model import Model
 
@@ -5,7 +6,16 @@ class GeminiChatModel(Model):
     def __init__(self, model_name):
         super().__init__(model_name)
         self.model_name = model_name
-        genai.configure(api_key=input("your Gemini API key: "))
+
+        # Check if the API key is available in the environment
+        api_key = os.getenv("GEMINI_API_KEY")
+        if not api_key:
+            # Prompt for the key if not set in the environment
+            api_key = input("Please enter your Gemini API key: ")
+            os.environ["GEMINI_API_KEY"] = api_key  # Set it in the environment
+
+        # Configure the API client with the retrieved key
+        genai.configure(api_key=api_key)
         self.client = genai.GenerativeModel(model_name)
 
     def generate(self, prompt: str, system_prompt: str = None, stop_strings: list = None, **kwargs) -> str:
