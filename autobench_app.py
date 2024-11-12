@@ -426,7 +426,6 @@ def compare_models_page():
             width=width,
             label=model_name,
             color=colors[i % len(colors)],
-            edgecolor='white',  # Adds white edges to bars for better separation
             zorder=5  # Ensures bars are above the grid
         )
 
