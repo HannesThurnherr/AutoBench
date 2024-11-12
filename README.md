@@ -9,10 +9,11 @@ AutoBench generates questionnaires to measure a model's alignment with specific 
 1. Prompting a Language Model with morally relevant questions.
 2. Generating Categorical Responses by asking the model to produce answers aligned with predefined moral categories (e.g., utilitarian, deontological, amoral).
 3. Comparing Distributions to reveal value-based differences among models.
-<img width="1778" alt="Screenshot 2024-11-12 at 21 45 21" src="https://github.com/user-attachments/assets/37010f84-b9c3-4273-98b0-9aa58a867be6">
+<img width="3008" alt="Screenshot 2024-11-12 at 21 47 07" src="https://github.com/user-attachments/assets/180477e1-418b-48ee-984b-48466b014544">
+
 
 For example, AutoBench can compare models by how often they produce utilitarian vs. deontological responses, or explore other axes like conservatism, youth alignment, and more.
-
+<img width="1778" alt="Screenshot 2024-11-12 at 21 45 21" src="https://github.com/user-attachments/assets/37010f84-b9c3-4273-98b0-9aa58a867be6">
 ### Quick Start
 
 ```bash
