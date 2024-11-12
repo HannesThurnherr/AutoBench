@@ -14,18 +14,21 @@ For example, AutoBench can compare models by how often they produce utilitarian 
 
 ### Quick Start
 
-1. Clone this repo:
-   `git clone git@github.com:HannesThurnherr/AutoBench.git`
-   `cd AutoBench`
-   
-2. Set up dependencies:
-   `pip install -r requirements.txt`
+```bash
+# 1. Clone the Repository
+git clone git@github.com:HannesThurnherr/AutoBench.git
+cd AutoBench
 
-3. Run benchmark generation:
-   `python generate_benchmark.py --categories "utilitarian,deontological,amoral"`
+# 2. Set Up a Virtual Environment
+python -m venv myenv
+source myenv/bin/activate  # On Windows use `myenv\Scripts\activate`
 
-4. Evaluate a model's values:
-   `python evaluate_model.py --model "MODEL_NAME"`
+# 3. Install Dependencies
+pip install -r requirements.txt
+
+# 4. Run the Code
+streamlit run autobench_app.py
+```
 
 ### Results
 The tool provides a distribution across chosen categories, making it easy to compare multiple language models on various moral or ideological dimensions. For instance, you could find that “Model A is 20% more utilitarian than Model B.”
