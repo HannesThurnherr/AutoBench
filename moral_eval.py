@@ -157,6 +157,30 @@ def visualize_answers(answers, categories):
 
     plt.show()
 
+
+def compare_answers(set1, set2):
+    # Counters
+    total_questions = len(set1)
+    agreement_count = 0
+    disagreement_dict = {}
+
+    # Iterate through the questions
+    for question, answer1 in set1.items():
+        answer2 = set2.get(question)
+
+        # Check if answers agree
+        if answer1 == answer2:
+            agreement_count += 1
+        else:
+            # Store the disagreements
+            disagreement_dict[question] = {'Set 1': answer1, 'Set 2': answer2}
+
+    # Calculate the percentage of agreement
+    agreement_percentage = (agreement_count / total_questions) * 100
+
+    return agreement_percentage, disagreement_dict
+
+
 """from models.OpenAIChatModel import OpenAIChatModel
 
 lm = OpenAIChatModel("gpt-4o")
