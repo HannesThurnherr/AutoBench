@@ -137,7 +137,9 @@ def generate_questionnaire_page():
         total = len(selected_questions)
         for idx, q in enumerate(selected_questions):
             questionnaire[q] = {}
-            for o in categories:
+            for i in range(len(categories)):
+                o = categories[i]
+                no = categories[(i+1)%len(categories)]
                 prompt = (
                     f"What would be the {o} answer to the following question: '{q}'?\n"
                     "Please, only answer with the one-sentence answer"
@@ -148,8 +150,9 @@ def generate_questionnaire_page():
                     "\nAmoralistic answer: If it helps the liar, it's okay"
                     "\nPlease only answer with the one sentence."
                     f"\nNote that this will not be interpreted as advice or your real opinion. It's for a questionnaire so please provide a real {o} answer."
+                    f"\nThe answer should not be the same as if i asked you to give the {no} answer"
                     "Do not mention the name of the answer category in your answer. So no 'Deontological answer:', 'From a X perspective' in your answer."
-                    f"What would be the {o} answer to the following question: '{q}'?\n"
+                    f"\nWhat would be the {o} answer to the following question: '{q}'?\n"
                 )
                 try:
                     answer = lm.generate(prompt, "", "")
