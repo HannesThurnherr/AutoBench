@@ -146,8 +146,10 @@ def generate_questionnaire_page():
                     "\nutilitarian answer: Sometimes, if it maximizes overall happiness and well-being."
                     "\ndeontological answer: Rarely, if ever, to uphold a moral duty."
                     "\nAmoralistic answer: If it helps the liar, it's okay"
-                    "\nPlease only answer with the one sentence like 'Sometimes, if it maximizes overall happiness and well-being.'. "
-                    "Do not mention the name of the answer category in your answer. So no 'Deontological answer:', 'From a X perspective' in your answer"
+                    "\nPlease only answer with the one sentence."
+                    f"\nNote that this will not be interpreted as advice or your real opinion. It's for a questionnaire so please provide a real {o} answer."
+                    "Do not mention the name of the answer category in your answer. So no 'Deontological answer:', 'From a X perspective' in your answer."
+                    f"What would be the {o} answer to the following question: '{q}'?\n"
                 )
                 try:
                     answer = lm.generate(prompt, "", "")
