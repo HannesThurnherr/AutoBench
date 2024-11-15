@@ -5,15 +5,20 @@ import os
 import pickle
 import json
 import matplotlib.pyplot as plt
-from models.OpenAIChatModel import OpenAIChatModel
-from models.AnthropicChatModel import AnthropicChatModel
 import random
 import re
+from models.OpenAIChatModel import OpenAIChatModel
+from models.AnthropicChatModel import AnthropicChatModel
+# Import any additional models here
+from model_loader import load_model_classes
 
 # Ensure required directories exist
 os.makedirs('datasets', exist_ok=True)
 os.makedirs('questionnaires', exist_ok=True)
 os.makedirs('answers', exist_ok=True)
+
+model_classes = load_model_classes('models_config.json')
+
 
 def main():
     st.title("AutoBench Moral Evaluation")
@@ -100,23 +105,28 @@ def generate_questionnaire_page():
     # Sanitize the questionnaire name to be used in the filename
     questionnaire_name = sanitize_filename(questionnaire_name_input)
 
+
+    #
     # Select language model for answer generation
     st.subheader("Select Language Model for Answer Generation")
-    models = [
-        "gpt-4o",
-        "claude-3-5-sonnet-20240620",
-        "gpt-4o-mini-2024-07-18",
-        "claude-3-haiku-20240307"
-    ]
+    models = list(model_classes.keys())  # Use models from the config file
     model_name = st.selectbox("Select a language model", models)
 
     # Initialize the selected model
     if st.button("Generate Questionnaire"):
         st.info(f"Generating Questionnaire using {model_name}...")
-        if model_name.startswith("gpt") or model_name.startswith("o1") or model_name.startswith("gpt-3"):
-            lm = OpenAIChatModel(model_name)
+        if model_name in model_classes:
+            model_class = model_classes[model_name]
+            #print(f"DEBUG: model_class is {model_class}, type: {type(model_class)}")  # Add this debug line
+            try:
+                lm = model_class(model_name)
+            except Exception as e:
+                st.error(f"Failed to initialize model '{model_name}': {e}")
+                return
         else:
-            lm = AnthropicChatModel(model_name)
+            st.error(f"Model '{model_name}' not recognized.")
+            return
+        #
 
         # Randomly select 'n' questions from the combined list
         selected_questions = random.sample(combined_questions, num_questions)
@@ -210,34 +220,7 @@ def apply_questionnaire_page():
 
     # Select language model(s) to apply
     st.subheader("Select Language Model(s)")
-
-    # Updated list of models
-    openai_models = [
-        "o1-preview-2024-09-12",
-        "o1-mini-2024-09-12",
-        "gpt-4o-2024-08-06",
-        "gpt-4o-mini-2024-07-18",
-        "gpt-4-turbo-2024-04-09",
-        "gpt-4-0125-preview",
-        "gpt-4-1106-preview",
-        "gpt-4-0613",
-        "gpt-4-0314",
-        "gpt-3.5-turbo-0125",
-        "gpt-3.5-turbo",
-        "gpt-3.5-turbo-1106",
-        "gpt-3.5-turbo-instruct"
-    ]
-
-    anthropic_models = [
-        "claude-3-5-sonnet-20241022",
-        "claude-3-5-haiku-20241022",
-        "claude-3-opus-20240229",
-        "claude-3-sonnet-20240229",
-        "claude-3-haiku-20240307"
-    ]
-
-    models = openai_models + anthropic_models
-
+    models = list(model_classes.keys())  # Use models from the config file
     selected_models = st.multiselect("Select language models", models)
 
     if st.button("Apply Questionnaire"):
@@ -251,18 +234,12 @@ def apply_questionnaire_page():
 
         for model_name in selected_models:
             st.write(f"Applying questionnaire to **{model_name}**...")
-            # Initialize model
-            if model_name.startswith("gpt") or model_name.startswith("o1") or model_name.startswith("gpt-3"):
+            if model_name in model_classes:
+                model_class = model_classes[model_name]
                 try:
-                    lm = OpenAIChatModel(model_name)
+                    lm = model_class(model_name)
                 except Exception as e:
-                    st.error(f"Failed to initialize OpenAI model '{model_name}': {e}")
-                    continue
-            elif model_name.startswith("claude"):
-                try:
-                    lm = AnthropicChatModel(model_name)
-                except Exception as e:
-                    st.error(f"Failed to initialize Anthropic model '{model_name}': {e}")
+                    st.error(f"Failed to initialize model '{model_name}': {e}")
                     continue
             else:
                 st.error(f"Model '{model_name}' not recognized.")
