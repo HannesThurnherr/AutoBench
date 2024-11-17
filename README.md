@@ -41,6 +41,7 @@ Currently, all models from OpenAI, Anthropic, and Xai are integrated. Additional
 
 Models can easily be added by modifying the `models_config.json` file and, if necessary, implementing a new model class that inherits from the abstract `Model` class.
 
+The respective API key can be entered in the terminal when necessary but it is recommended to configure the evironment variables `OPENAI_API_KEY`, `ANTHROPIC_API_KEY`, `XAI_API_KEY` and `LLAMA_API_KEY` with the respective keys.
 ### Available Question-Datasets
 Currently there are 6 datasets of questions available. The following four are all categories from the [SQUARE dataset](https://github.com/naver-ai/korean-safety-benchmarks/tree/main).
 - Contentious questions
@@ -62,3 +63,4 @@ What do you think of this code?
 ```
 
 Datasets can easily be added by placing a json file containing a list of strings (the questions) in the `datasets` folder.
+
