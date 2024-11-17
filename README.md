@@ -11,7 +11,7 @@ AutoBench provides an interface to generate questionnaires to measure a model's 
 3. Present the generated questionnaire to various language models, prompting them to select an answer.
 4. Compare the resulting answer distributions across the categories to assess relative values across models.
    
-<img width="3008" alt="Screenshot 2024-11-12 at 21 47 07" src="https://github.com/user-attachments/assets/180477e1-418b-48ee-984b-48466b014544">
+<img width="800" alt="Screenshot 2024-11-12 at 21 47 07" src="https://github.com/user-attachments/assets/180477e1-418b-48ee-984b-48466b014544">
 
 For example, AutoBench can compare models by how often they produce utilitarian vs. deontological responses, or explore other axes like conservatism, optimism-pessimis, opinions about code, and more.
 
