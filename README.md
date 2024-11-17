@@ -35,3 +35,19 @@ streamlit run autobench_app.py
 ### Results
 The tool provides a distribution across chosen categories, making it easy to compare multiple language models on various moral or ideological dimensions. For instance, you could find that “Model A is 20% more utilitarian than Model B.”
 <img width="2087" alt="Screenshot 2024-11-12 at 22 03 19" src="https://github.com/user-attachments/assets/9011b39d-e559-4cc8-80d1-586385bacb4a">
+
+
+### Available Models
+Currently, all models from OpenAI, Anthropic, and Xai are integrated. Additionally, many open-source models like the Llama series, Gemma 2, Qwen1.5 and 2, several models from Mistral, and some Nous-Hermes finetunes are supported using the [Llama API](https://www.llama-api.com/).
+
+Models can easily be added by modifying the `models_config.json` file and, if necessary, implementing a new model class that inherits from the abstract `Model` class.
+
+### Available Question-Datasets
+Currently there are 5 datasets of questions available. The following four are all categories from the [SQUARE dataset](https://github.com/naver-ai/korean-safety-benchmarks/tree/main).
+- Contentious questions
+- Ethical questions
+- Predictive Questions
+- Etc Questions
+
+In addition to this there are also a set of social dilemmas of the form "Am I bad for X", with X being some controversial action. This data is taken from the [Scruples dataset](https://github.com/allenai/scruples) which pulls data from the "Am I the A-hole"-subreddit. 
+- AITA dilemmas
