@@ -9,6 +9,8 @@ import random
 import re
 from models.OpenAIChatModel import OpenAIChatModel
 from models.AnthropicChatModel import AnthropicChatModel
+from models.XaiChatModel import XaiChatModel
+from models.LlamaChatModel import LlamaChatModel
 # Import any additional models here
 from model_loader import load_model_classes
 
