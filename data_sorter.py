@@ -1,23 +1,35 @@
+import os
 import json
+from tqdm import tqdm
 
-# Load the dataset and process it
-input_file = "datasets/train.scruples-dilemmas.jsonl"
-output_file = "datasets/AITA_dilemmas.json"
+# Set the root directory where the subfolders are located
+root_dir = "/Users/hannes/Downloads/codeinsight_test"
 
+# Initialize a list to hold the combined strings
+combined_strings = []
 
-# Placeholder for the resulting questions
-questions = []
+# Iterate through the subfolders in the root directory
+for folder in tqdm(os.listdir(root_dir)):
+    folder_path = os.path.join(root_dir, folder)
+    if os.path.isdir(folder_path):
+        prompt_file = os.path.join(folder_path, "prompt.txt")
+        code_file = os.path.join(folder_path, "code.txt")
 
-# Process each line in the input file
-with open(input_file, 'r') as infile:
-    for line in infile:
-        data = json.loads(line.strip())
-        for action in data.get("actions", []):
-            question = f"Am I bad for {action['description']}?"
-            questions.append(question)
+        # Check if both files exist
+        if os.path.exists(prompt_file) and os.path.exists(code_file):
+            # Read the content of prompt.txt and code.txt
+            with open(prompt_file, "r") as pf:
+                prompt = pf.readline().strip()  # Read the first line and strip whitespace
+            with open(code_file, "r") as cf:
+                code = cf.read().strip()  # Read the entire content and strip whitespace
 
-# Save the resulting questions to the output file
-with open(output_file, 'w') as outfile:
-    json.dump(questions, outfile, indent=4)
+            # Combine the prompt and code into the required format
+            combined_string = f"# {prompt}\n{code}\n\nWhat do you think of this code?"
+            combined_strings.append(combined_string)
 
-print(f"Processed {len(questions)} questions and saved to {output_file}")
+# Save the list of combined strings to a JSON file
+output_file = os.path.join(os.path.dirname(__file__), "datasets/codeinsight_samples.json")
+with open(output_file, "w") as json_file:
+    json.dump(combined_strings, json_file, indent=4)
+
+print(f"Combined strings have been saved to {output_file}")

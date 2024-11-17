@@ -43,11 +43,18 @@ Currently, all models from OpenAI, Anthropic, and Xai are integrated. Additional
 Models can easily be added by modifying the `models_config.json` file and, if necessary, implementing a new model class that inherits from the abstract `Model` class.
 
 ### Available Question-Datasets
-Currently there are 5 datasets of questions available. The following four are all categories from the [SQUARE dataset](https://github.com/naver-ai/korean-safety-benchmarks/tree/main).
+Currently there are 6 datasets of questions available. The following four are all categories from the [SQUARE dataset](https://github.com/naver-ai/korean-safety-benchmarks/tree/main).
 - Contentious questions
 - Ethical questions
 - Predictive Questions
 - Etc Questions
-
-In addition to this there are also a set of social dilemmas of the form "Am I bad for X", with X being some controversial action. This data is taken from the [Scruples dataset](https://github.com/allenai/scruples) which pulls data from the "Am I the A-hole"-subreddit. 
-- AITA dilemmas
+- AITA Dilemmas
+- CodeInsights samples
+The first four datasets are all categories from the [SQUARE dataset](https://github.com/naver-ai/korean-safety-benchmarks/tree/main).
+In addition to this there are also a set of social dilemmas of the form "Am I bad for X", with X being some controversial action. This data is taken from the [Scruples dataset](https://github.com/allenai/scruples) which pulls data from the "Am I the A-hole"-subreddit.
+To analize technical tendencies there is also a set of short code samples from the [CodeInsights dataset](https://github.com/NathanaelBeau/CodeInsight/tree/main), always in the format:
+```python
+#Comment describing whats to be implemented
+def foo():
+    return code_implementing_task()
+```
