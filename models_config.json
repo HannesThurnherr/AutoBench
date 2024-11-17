@@ -71,6 +71,10 @@
     {
       "name": "claude-3-haiku-20240307",
       "class": "models.AnthropicChatModel.AnthropicChatModel"
+    },
+    {
+      "name": "grok-beta",
+      "class": "models.XaiChatModel.XaiChatModel"
     }
   ]
 }
