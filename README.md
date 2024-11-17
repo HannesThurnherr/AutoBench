@@ -1,4 +1,4 @@
-# AutoBench: Automated Value Benchmarking for Language Models
+# AutoBench: for Quick Automated Value Benchmarking of Language Models
 
 ### Motivation
 Measuring a model’s values is essential to ensuring alignment, and benchmarks like Machiavelli exist to do just that. AutoBench aims to automate this process, creating benchmarks that provide quick insights into model value orientations.
@@ -13,8 +13,7 @@ AutoBench provides an interface to generate questionnaires to measure a model's 
    
 <img width="3008" alt="Screenshot 2024-11-12 at 21 47 07" src="https://github.com/user-attachments/assets/180477e1-418b-48ee-984b-48466b014544">
 
-
-For example, AutoBench can compare models by how often they produce utilitarian vs. deontological responses, or explore other axes like conservatism, youth alignment, and more.
+For example, AutoBench can compare models by how often they produce utilitarian vs. deontological responses, or explore other axes like conservatism, optimism-pessimis, opinions about code, and more.
 
 ```bash
 # 1. Clone the Repository
@@ -36,7 +35,6 @@ streamlit run autobench_app.py
 The tool provides a distribution across chosen categories, making it easy to compare multiple language models on various moral or ideological dimensions. For instance, you could find that “Model A is 20% more utilitarian than Model B.”
 <img width="2087" alt="Screenshot 2024-11-12 at 22 03 19" src="https://github.com/user-attachments/assets/9011b39d-e559-4cc8-80d1-586385bacb4a">
 
-
 ### Available Models
 Currently, all models from OpenAI, Anthropic, and Xai are integrated. Additionally, many open-source models like the Llama series, Gemma 2, Qwen1.5 and 2, several models from Mistral, and some Nous-Hermes finetunes are supported using the [Llama API](https://www.llama-api.com/).
 
@@ -50,11 +48,16 @@ Currently there are 6 datasets of questions available. The following four are al
 - Etc Questions
 - AITA Dilemmas
 - CodeInsights samples
+
 The first four datasets are all categories from the [SQUARE dataset](https://github.com/naver-ai/korean-safety-benchmarks/tree/main).
 In addition to this there are also a set of social dilemmas of the form "Am I bad for X", with X being some controversial action. This data is taken from the [Scruples dataset](https://github.com/allenai/scruples) which pulls data from the "Am I the A-hole"-subreddit.
-To analize technical tendencies there is also a set of short code samples from the [CodeInsights dataset](https://github.com/NathanaelBeau/CodeInsight/tree/main), always in the format:
+To analize technical tendencies there is also a set of short code samples from the [CodeInsights dataset](https://github.com/NathanaelBeau/CodeInsight/tree/main). This may allow evaluation alon axes like "how opinionated is the model about code formating". The questions always in the format:
 ```python
 #Comment describing whats to be implemented
 def foo():
     return code_implementing_task()
+
+What do you think of this code?
 ```
+
+Datasets can easily be added by placing a json file containing a list of strings (the questions) in the `datasets` folder.
