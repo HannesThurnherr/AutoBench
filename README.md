@@ -37,11 +37,11 @@ The tool provides a distribution across chosen categories, making it easy to com
 <img width="2087" alt="Screenshot 2024-11-12 at 22 03 19" src="https://github.com/user-attachments/assets/9011b39d-e559-4cc8-80d1-586385bacb4a">
 
 ### Available Models
-Currently, all models from OpenAI, Anthropic, and Xai are integrated. Additionally, many open-source models like the Llama series, Gemma 2, Qwen1.5 and 2, several models from Mistral, and some Nous-Hermes finetunes are supported using the [Llama API](https://www.llama-api.com/).
+Currently, all models from OpenAI, Anthropic, and Xai are integrated. Additionally, many open-source models like the Llama series, Gemma 2, several models from Mistral, and some Nous-Hermes finetunes are supported using the [Llama API](https://www.llama-api.com/).
 
 Models can easily be added by modifying the `models_config.json` file and, if necessary, implementing a new model class that inherits from the abstract `Model` class.
 
-The respective API key can be entered in the terminal when necessary but it is recommended to configure the evironment variables `OPENAI_API_KEY`, `ANTHROPIC_API_KEY`, `XAI_API_KEY` and `LLAMA_API_KEY` with the respective keys.
+The API keys can be entered in the terminal when necessary, but it is recommended to configure the evironment variables `OPENAI_API_KEY`, `ANTHROPIC_API_KEY`, `XAI_API_KEY` and `LLAMA_API_KEY` with the respective keys.
 ### Available Question-Datasets
 Currently there are 6 datasets of questions available. The following four are all categories from the [SQUARE dataset](https://github.com/naver-ai/korean-safety-benchmarks/tree/main).
 - Contentious questions

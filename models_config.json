@@ -121,10 +121,6 @@
       "class": "models.LlamaChatModel.LlamaChatModel"
     },
     {
-      "name": "mixtral-8x22b",
-      "class": "models.LlamaChatModel.LlamaChatModel"
-    },
-    {
       "name": "mixtral-8x22b-instruct",
       "class": "models.LlamaChatModel.LlamaChatModel"
     },
@@ -133,71 +129,11 @@
       "class": "models.LlamaChatModel.LlamaChatModel"
     },
     {
-      "name": "mistral-7b",
-      "class": "models.LlamaChatModel.LlamaChatModel"
-    },
-    {
       "name": "mistral-7b-instruct",
       "class": "models.LlamaChatModel.LlamaChatModel"
     },
     {
-      "name": "llama-7b-32k",
-      "class": "models.LlamaChatModel.LlamaChatModel"
-    },
-    {
-      "name": "llama2-13b",
-      "class": "models.LlamaChatModel.LlamaChatModel"
-    },
-    {
-      "name": "llama2-70b",
-      "class": "models.LlamaChatModel.LlamaChatModel"
-    },
-    {
-      "name": "llama2-7b",
-      "class": "models.LlamaChatModel.LlamaChatModel"
-    },
-    {
       "name": "Nous-Hermes-2-Mixtral-8x7B-DPO",
-      "class": "models.LlamaChatModel.LlamaChatModel"
-    },
-    {
-      "name": "Nous-Hermes-2-Yi-34B",
-      "class": "models.LlamaChatModel.LlamaChatModel"
-    },
-    {
-      "name": "Qwen1.5-0.5B-Chat",
-      "class": "models.LlamaChatModel.LlamaChatModel"
-    },
-    {
-      "name": "Qwen1.5-1.8B-Chat",
-      "class": "models.LlamaChatModel.LlamaChatModel"
-    },
-    {
-      "name": "Qwen1.5-110B-Chat",
-      "class": "models.LlamaChatModel.LlamaChatModel"
-    },
-    {
-      "name": "Qwen1.5-14B-Chat",
-      "class": "models.LlamaChatModel.LlamaChatModel"
-    },
-    {
-      "name": "Qwen1.5-32B-Chat",
-      "class": "models.LlamaChatModel.LlamaChatModel"
-    },
-    {
-      "name": "Qwen1.5-4B-Chat",
-      "class": "models.LlamaChatModel.LlamaChatModel"
-    },
-    {
-      "name": "Qwen1.5-72B-Chat",
-      "class": "models.LlamaChatModel.LlamaChatModel"
-    },
-    {
-      "name": "Qwen1.5-7B-Chat",
-      "class": "models.LlamaChatModel.LlamaChatModel"
-    },
-    {
-      "name": "Qwen2-72B-Instruct",
       "class": "models.LlamaChatModel.LlamaChatModel"
     }
   ]

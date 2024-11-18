@@ -1,7 +1,6 @@
 import os
 import time
-from llama_index.llms.llama_api import LlamaAPI
-from llama_index.core.base.llms.types import ChatMessage
+from openai import OpenAI
 from abstract_model import Model
 
 class LlamaChatModel(Model):
@@ -15,10 +14,15 @@ class LlamaChatModel(Model):
 
         # Check for API key in environment variables
         if "LLAMA_API_KEY" not in os.environ:
-            os.environ["echo $LLAMA_API_KEY "] = input("Please enter your Llama API key: ")
+            os.environ["LLAMA_API_KEY"] = input("Please enter your Llama API key: ")
 
         self.api_key = os.environ["LLAMA_API_KEY"]
-        self.client = LlamaAPI(api_key=self.api_key)
+
+        # Initialize the OpenAI client for Llama API
+        self.client = OpenAI(
+            api_key=self.api_key,
+            base_url="https://api.llama-api.com"
+        )
 
     def generate(self, prompt: str, system_prompt: str = None, stop_strings=None, **kwargs) -> str:
         """
@@ -30,17 +34,25 @@ class LlamaChatModel(Model):
         :return: Generated text from the model.
         """
         try:
-            # Create the list of messages for the chat
+            # Construct the messages list
             messages = []
             if system_prompt:
-                messages.append(ChatMessage(role="system", content=system_prompt))
-            messages.append(ChatMessage(role="user", content=prompt))
+                messages.append({"role": "system", "content": system_prompt})
+            messages.append({"role": "user", "content": prompt})
 
-            # Call the Llama API's chat method with the initialized model name
-            response = self.client.chat(messages=messages, model=self.model_name)
+            # Call the Llama API's chat completion method
+            response = self.client.chat.completions.create(
+                model=self.model_name,
+                messages=messages,
+                **kwargs
+            )
 
-            # Extract and return the content of the response
-            return response.message.content
+            # Debugging: Print full response (optional)
+            # print(response.model_dump_json(indent=2))
+
+            # Extract and return the content of the first choice
+            print(response)
+            return response.choices[0].message.content
 
         except Exception as e:
             print(f"Error occurred: {e}. Pausing for 60 seconds.")
@@ -53,4 +65,7 @@ class LlamaChatModel(Model):
         :param key: New API key.
         """
         os.environ["LLAMA_API_KEY"] = key
-        self.client = LlamaAPI(api_key=key)
+        self.client = OpenAI(
+            api_key=key,
+            base_url="https://api.llama-api.com"
+        )
