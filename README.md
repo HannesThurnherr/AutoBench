@@ -33,8 +33,8 @@ streamlit run autobench_app.py
 ```
 
 ### Results
+![Screenshot+2024-11-18+at+01 55 41](https://github.com/user-attachments/assets/a53e6f4a-fd82-4ba0-806d-c630682bd5bb)
 The tool provides a distribution across chosen categories, making it easy to compare multiple language models on various moral or ideological dimensions. For instance, you could find that “Model A is 20% more utilitarian than Model B.”
-<img width="2087" alt="Screenshot 2024-11-12 at 22 03 19" src="https://github.com/user-attachments/assets/9011b39d-e559-4cc8-80d1-586385bacb4a">
 
 ### Available Models
 Currently, all models from OpenAI, Anthropic, and Xai are integrated. Additionally, many open-source models like the Llama series, Gemma 2, several models from Mistral, and some Nous-Hermes finetunes are supported using the [Llama API](https://www.llama-api.com/).
